@@ -26,29 +26,31 @@ def identify_category_and_courses(user_message):
     delimiter = "####"
 
     system_message = f"""
-    You will be provided with customer service queries. \
-    The customer service query will be enclosed in
-    the pair of {delimiter}.
+    You will be provided with customer queries. \
+    The customer query will be enclosed in \
+    the pair of {delimiter}. \
 
-    Decide if the query is relevant to any specific courses
-    in the Python dictionary below, which each key is a `category`
-    and the value is a list of `course_name`.
+    Decide if the query is about courses. \
+    If so, look for relevant courses in the Python dictionary below, \
+    even if the query is asking about information that is unavailable in the dictionary.\
+    Each key in the dictionary is a `category` \
+    and each dictionary value is a list of `course_name`.\
 
-    If there are any relevant course(s) found, output the pair(s) of a) `course_name` the relevant courses and b) the associated `category` into a
-    list of dictionary object, where each item in the list is a relevant course
-    and each course is a dictionary that contains two keys:
-    1) category
-    2) course_name
+    If there are any relevant course(s) found, output the pair(s) of a) `course_name` of the relevant courses and b) the associated `category` into a \
+    list of dictionary object, where each item in the list is a relevant course \
+    and each course is a dictionary that contains two keys: \
+    1) category \
+    2) course_name \
 
-    {category_n_course_name}
+    {category_n_course_name} \
 
-    If are no relevant courses are found, output an empty list.
+    If are no relevant courses are found, output an empty list. \
 
     If the user is asking about courses in general that are on offer, randomly select 4 to 5 courses of \
-    a mix of different categories from the Python dictionary. 
+    a mix of different categories from the Python dictionary. \
 
     Ensure your response contains only the list of dictionary objects or an empty list, \
-    without any enclosing tags or delimiters.
+    without any enclosing tags or delimiters. 
     """
 
     messages =  [
@@ -102,34 +104,34 @@ def generate_response_based_on_course_details(user_message, product_details):
     delimiter = "####"
 
     system_message = f"""
-    Follow these steps to answer the customer queries.
-    The customer query will be delimited with a pair {delimiter}.
+    Follow these steps to answer the customer queries.\
+    The customer query will be delimited with a pair {delimiter}.\
 
     Step 1:{delimiter} If the user is asking about courses, \
-    understand the relevant course(s) from the following list.
-    All available courses shown in the json data below:
-    {product_details}
+    understand the relevant course(s) from the following list.\
+    All available courses shown in the json data below:\
+    {product_details}\
     If the user is not asking about specific courses, \
-    try to answer as best as you can in a helpful, factual and concise manner.
+    try to answer as best as you can in a helpful, factual and concise manner.\
 
     Step 2:{delimiter} Use the information about the course to \
-    generate the answer for the customer's query.
-    You must only rely on the facts or information in the course information.
+    generate the answer for the customer's query.\
+    You must only rely on the facts or information in the course information.\
     Your response should be as detail as possible and \
-    include information that is useful for customer to better understand the course.
+    include information that is useful for customer to better understand the course.\
 
-    Step 3:{delimiter}: Answer the customer in a friendly tone.
-    Make sure the statements are factually accurate.
+    Step 3:{delimiter}: Answer the customer in a friendly tone.\
+    Make sure the statements are factually accurate.\
     Your response should be comprehensive and informative to help the \
-    the customers to make their decision.
-    Complete with details such rating, pricing, and skills to be learnt.
-    Use Neural Linguistic Programming to construct your response.
-    Do not include any markdown in your response
+    the customers to make their decision.\
+    Complete with details such rating, pricing, and skills to be learnt.\
+    Use Neural Linguistic Programming to construct your response.\
+    Do not include any markdown in your response\
 
-    Use the following format:
-    Step 1:{delimiter} <step 1 reasoning>
-    Step 2:{delimiter} <step 2 reasoning>
-    Step 3:{delimiter} <step 3 response to customer>
+    Use the following format:\
+    Step 1:{delimiter} <step 1 reasoning>\
+    Step 2:{delimiter} <step 2 reasoning>\
+    Step 3:{delimiter} <step 3 response to customer>\
 
     Make sure to include {delimiter} to separate every step. Do not include a {delimiter} after the last step. 
     """
