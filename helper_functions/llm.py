@@ -4,10 +4,14 @@ import streamlit as st
 from openai import OpenAI
 import tiktoken
 
-if load_dotenv('.env'):
+# if load_dotenv('.env'):
+#   AI_API_KEY = os.getenv('OPENAI_API_KEY')
+#else:
+#   AI_API_KEY = st.secrets['OPENAI_API_KEY']
+
+AI_API_KEY = st.secrets.get('OPENAI_API_KEY',False)
+if not AI_API_KEY:
    AI_API_KEY = os.getenv('OPENAI_API_KEY')
-else:
-   AI_API_KEY = st.secrets['OPENAI_API_KEY']
 
 # Pass the API Key to the OpenAI Client
 # client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
