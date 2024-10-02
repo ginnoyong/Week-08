@@ -15,9 +15,13 @@ from dotenv import load_dotenv
 #else:
 #   app_password = st.secrets['password']
 
-app_password = st.secrets.get('password',False)
-if not app_password:
-   app_password = os.getenv('password')
+try:
+   app_password = os.getenv('password') 
+except:
+   app_password = st.secrets['password'] 
+
+#if not app_password:
+#   app_password = os.getenv('password')
   
 
 def check_password():  
